@@ -2,6 +2,7 @@
 #get lines to iterate over from file
 
 import sys
+import collections
 
 FILE_NAME = sys.argv[1]
 
@@ -10,7 +11,7 @@ def get_words(file_name):
     """Splits each line in file by space and returns list of words"""
 
     words = {}
-    c = Counter()
+    c = collections.Counter()
 
     with open(file_name) as read_file:
         one_line = read_file.read().lower().strip().replace("\n", " ").split(" ")
@@ -19,8 +20,11 @@ def get_words(file_name):
             for char in one_line[i]:
                 if not char.isalnum():
                     one_line[i] = one_line[i].replace(char, "")
+            c[one_line[i]] += 1
+    print "c: ", c
 
-            print c[word]
+    for word, count in c.iteritems():
+        print word, count  
 
     #     for line in read_file:
     #         split_words = line.lower().strip().split(" ")
