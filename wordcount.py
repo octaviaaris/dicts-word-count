@@ -33,9 +33,14 @@ def get_words(file_name):
     # for word in sorted_c:
     #     print word, c[word]
 
-    # sort output by word count
-    sort_by_word = sorted(c.items(), key=itemgetter(1))
-    for word, count in sort_by_word:
-        print "{}: {}".format(word, count)
+    # # sort output by word count
+    # sort_by_word = sorted(c.items(), key=itemgetter(1))
+    # for word, count in sort_by_word:
+    #     print "{}: {}".format(word, count)
+
+    #sort output by word count desc, then by word asc
+    word_asc = sorted(c.items(), reverse=True)
+    count_desc = sorted(word_asc, key=itemgetter(1))
+    print count_desc
 
 get_words(FILE_NAME)
