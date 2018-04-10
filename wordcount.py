@@ -3,6 +3,7 @@
 
 import sys
 import collections
+from operator import itemgetter
 
 FILE_NAME = sys.argv[1]
 
@@ -26,10 +27,15 @@ def get_words(file_name):
     # for word, count in sorted_c.iteritems():
     #     print word, count
 
-    #sort output to show words alphabetically
-    sorted_c = sorted(c)
+    # #sort output to show words alphabetically
+    # sorted_c = sorted(c)
 
-    for word in sorted_c:
-        print word, c[word]
+    # for word in sorted_c:
+    #     print word, c[word]
+
+    # sort output by word count
+    sort_by_word = sorted(c.items(), key=itemgetter(1))
+    for word, count in sort_by_word:
+        print "{}: {}".format(word, count)
 
 get_words(FILE_NAME)
